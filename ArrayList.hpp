@@ -17,7 +17,7 @@ public:
 
     void removeLast();
     void removeFirst();
-    void removeFrom();
+    void removeFrom(int index);
 
     void display();
     int get(int index);
