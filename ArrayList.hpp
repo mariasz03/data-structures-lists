@@ -1,9 +1,8 @@
 #include <iostream>
 #pragma once
 
-
 class ArrayList {
-protected:
+private:
     int* array_;
     int capacity_;
     int size_;
@@ -11,8 +10,15 @@ protected:
 public:
     ArrayList(int capacity = 10);
     ~ArrayList();
+
     void addLast(int element);
     void addFirst(int element);
+    void addAt(int index, int element);
+
+    void removeLast();
+    void removeFirst();
+    void removeFrom();
+
     void display();
     int get(int index);
     int getSize();
