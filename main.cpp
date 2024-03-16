@@ -35,7 +35,7 @@ int main() {
             int index;
             std::cout << "Podaj index elementu: ";
             std::cin >> index;
-            std::cout << "Element " << index << ": " << array.get(index) << std::endl;
+            std::cout << "Element " << index << ": " << array.getElement(index) << std::endl;
             break;
         case 3:
             array.display();
@@ -53,12 +53,12 @@ int main() {
             std::cout << "Pomyslnie dodano element " << element << " na koniec tablicy.";
             break;
         case 6:
-            std::cout << "Podaj element ktory chcesz dodac na koniec tablicy: ";
+            std::cout << "Podaj element ktory chcesz dodac: ";
             std::cin >> element;
-            std::cout << "Podaj element index na ktory chcesz dodac element: ";
+            std::cout << "Podaj index na ktory chcesz dodac element: ";
             std::cin >> index;
             array.addAt(index, element);
-            std::cout << "Pomyslnie dodano element " << element << " na koniec tablicy." << std::endl;
+            std::cout << "Pomyslnie dodano element " << element << " na index." << index << std::endl;
             break;
         case 7:
             array.removeLast();

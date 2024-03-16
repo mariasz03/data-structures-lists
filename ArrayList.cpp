@@ -1,6 +1,6 @@
 #include "ArrayList.hpp"
 
-ArrayList::ArrayList(int initialCapacity) : capacity_(initialCapacity), size_(0) {
+ArrayList::ArrayList(int initialCapacity) : initialCapacity_(initialCapacity), capacity_(initialCapacity), size_(0) {
     array_ = new int[capacity_];
 }
 
@@ -27,16 +27,16 @@ void ArrayList::addFirst(int element) { // Dodanie elementu na poczatek tablicy
     if(size_ >= capacity_) { // Stworzenie nowej, dwa razy wiekszej tablicy oraz skopiowanie starej tablicy do nowej z przesunieciem elementow o 1 w prawo
         int newCapacity = capacity_ * 2;
         int* newArray = new int[newCapacity];
-        for (int i = size_; i > 0; i--) {
-            newArray[i] = array_[i-1];
+        for (int i = 0; i < size_; i++) {
+            newArray[i+1] = array_[i];
         }
         delete[] array_;
         array_ = newArray;
         capacity_ = newCapacity;
     } else { // Przesuniecie elementów o 1 w prawo
         for (int i = size_; i > 0; i--) {
-            array_[i] = array_[i-1];
-        }
+                array_[i] = array_[i-1];
+            }
     }
     array_[0] = element;
     size_++;
@@ -50,20 +50,19 @@ void ArrayList::addAt(int index, int element) // Dodanie elementu na okreslonym 
             int newCapacity = capacity_ * 2;
             int* newArray = new int[newCapacity];
 
-            int j = 0;
-            for (int i = 0; i < size_; i++) {
-                if (i == index) {
-                    newArray[i] = element;
-                } else {
-                    newArray[i] = array_[j++];
-                }
+            for (int i = 0; i < index; i++) { // tutaj nie ma potrzeby iteracji od konca, poniewaz i tak kopiujemy elementy do nowej tablicy
+                newArray[i] = array_[i];
+            }
+            newArray[index] = element;
+            for (int i = index; i < size_; i++) {
+                newArray[i+1] = array_[i];
             }
 
             delete[] array_;
             array_ = newArray;
             capacity_ = newCapacity;
         } else { // Przesuniecie elementow za indeksem o 1, w prawo
-            for (int i = size_; i > index; i--) {
+            for (int i = size_; i > index; i--) { // iteracja od konca
                 array_[i] = array_[i-1];
             }
             array_[index] = element;
@@ -77,10 +76,10 @@ void ArrayList::addAt(int index, int element) // Dodanie elementu na okreslonym 
 
 void ArrayList::removeLast() { // Usuniecie ostatniego elementu
     if (size_ > 0) {
-        if(size_-1 <= capacity_ / 2 && capacity_ > 10) {
+        if(size_ - 1 <= capacity_ / 2 && capacity_ > initialCapacity_) {
             int newCapacity = capacity_ / 2;
             int* newArray = new int[newCapacity];
-            for (int i = 0; i < size_-1; i++) {
+            for (int i = 0; i < size_ - 1; i++) {
                 newArray[i] = array_[i];
             }
             delete[] array_;
@@ -92,45 +91,52 @@ void ArrayList::removeLast() { // Usuniecie ostatniego elementu
 }
 
 void ArrayList::removeFirst() { // Usuniecie pierwszego elementu
-    if(size_-1 <= capacity_/2 && capacity_ > 10) { 
-        int newCapacity = capacity_ / 2;
-        int* newArray = new int[newCapacity];
-        for (int i = 0; i < size_; i++) {
-            newArray[i] = array_[i+1];
+    if (size_ > 0) {
+        if(size_-1 <= capacity_ / 2 && capacity_ > initialCapacity_) { 
+            int newCapacity = capacity_ / 2;
+            int* newArray = new int[newCapacity];
+            for (int i = 0; i < size_ - 1; i++) {
+                newArray[i] = array_[i+1];
+            }
+            delete[] array_;
+            array_ = newArray;
+            capacity_ = newCapacity;
+        } else { // Przesuniecie elementów o 1 w lewo
+            for (int i = 0; i < size_ - 1; i++) {
+                array_[i] = array_[i+1];
+            }
         }
-        delete[] array_;
-        array_ = newArray;
-        capacity_ = newCapacity;
-    } else { // Przesuniecie elementów o 1 w lewo
-        for (int i = 0; i < size_; i++) {
-            array_[i] = array_[i+1];
-        }
+        size_--;
     }
-    size_--;
 }
 
 void ArrayList::removeFrom(int index) {
     if (size_ > 0 && index >= 0 && index <= size_) {
-        if (size_-1 <= capacity_/2 && capacity_ > 10) {
+        if (size_ - 1 <= capacity_ / 2 && capacity_ > initialCapacity_) {
             int newCapacity = capacity_ / 2;
             int *newArray = new int[newCapacity];
 
-            int j = 0;
-            for (int i = 0; i < size_; i++) {
-                if (i == index) continue; // j nie zwieksza sie, petla przechodzi przez i index. Pominiecie elementu, ktory ma zostac usuniety
-                newArray[j++] = array_[i];
+            for (int i = 0; i < index; i++) {
+                newArray[i] = array_[i];
+            }
+
+            for (int i = index; i < size_ - 1; i++) {
+                newArray[i] = array_[i+1];
             }
 
             delete[] array_;
             array_ = newArray;
             capacity_ = newCapacity;
+        
             
         } else { // Przesuniecie elementów o 1 w lewo, zaczynajac dopiero od tego ktory chcemy usunac
-            for (int i = index; i < size_; i++) {
+            for (int i = index; i < size_ - 1; i++) {
                 array_[i] = array_[i+1];
             }
         }
         size_--;
+    } else {
+        std::cout << "Niepoprawny index.";
     }
 }
 
@@ -141,7 +147,7 @@ void ArrayList::display() {
     }
 }
 
-int ArrayList::get(int index) {
+int ArrayList::getElement(int index) {
     if (index < 0 || index >= size_) {
         return -1;
     }

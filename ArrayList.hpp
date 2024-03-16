@@ -4,6 +4,7 @@
 class ArrayList {
 private:
     int* array_;
+    int initialCapacity_;
     int capacity_;
     int size_;
 
@@ -20,7 +21,7 @@ public:
     void removeFrom(int index);
 
     void display();
-    int get(int index);
+    int getElement(int index);
     int getSize();
     int getCapacity();
 };
