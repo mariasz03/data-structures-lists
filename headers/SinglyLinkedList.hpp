@@ -1,16 +1,20 @@
 #include <iostream>
 #pragma once
 
-class ArrayList {
-private:
-    int* array_;
-    int initialCapacity_;
-    int capacity_;
-    int size_;
-
+class Node {
 public:
-    ArrayList(int capacity = 10);
-    ~ArrayList();
+    int element;
+    Node* next;
+
+    Node(int element);
+};
+
+class SinglyLinkedList {
+private:
+    Node* head;
+public:
+    SinglyLinkedList();
+    ~SinglyLinkedList();
 
     void addLast(int element);
     void addFirst(int element);
@@ -20,8 +24,9 @@ public:
     void removeFirst();
     void removeFrom(int index);
 
+    int findElement(int element);
+
     void display();
     int getElement(int index);
     int getSize();
-    int getCapacity();
 };

@@ -1,4 +1,4 @@
-#include "ArrayList.hpp"
+#include "../headers/ArrayList.hpp"
 
 ArrayList::ArrayList(int initialCapacity) : initialCapacity_(initialCapacity), capacity_(initialCapacity), size_(0) {
     array_ = new int[capacity_];
@@ -69,9 +69,8 @@ void ArrayList::addAt(int index, int element) // Dodanie elementu na okreslonym 
         }
         size_++;
     } else {
-        std::cout << "Niepoprawny index.";
+        throw std::out_of_range("Index out of range.");
     }
-
 }
 
 void ArrayList::removeLast() { // Usuniecie ostatniego elementu
@@ -115,20 +114,15 @@ void ArrayList::removeFrom(int index) {
         if (size_ - 1 <= capacity_ / 2 && capacity_ > initialCapacity_) {
             int newCapacity = capacity_ / 2;
             int *newArray = new int[newCapacity];
-
             for (int i = 0; i < index; i++) {
                 newArray[i] = array_[i];
             }
-
             for (int i = index; i < size_ - 1; i++) {
                 newArray[i] = array_[i+1];
             }
-
             delete[] array_;
             array_ = newArray;
             capacity_ = newCapacity;
-        
-            
         } else { // Przesuniecie elementów o 1 w lewo, zaczynajac dopiero od tego ktory chcemy usunac
             for (int i = index; i < size_ - 1; i++) {
                 array_[i] = array_[i+1];
@@ -136,8 +130,17 @@ void ArrayList::removeFrom(int index) {
         }
         size_--;
     } else {
-        std::cout << "Niepoprawny index.";
+        throw std::out_of_range("Index out of range.");
     }
+}
+
+int ArrayList::findElement(int element) {
+    for (int i = 0; i < size_; i++) {
+        if (array_[i] == element) {
+            return i;
+        }
+    }
+    throw std::out_of_range("Element not found.");
 }
 
 
@@ -149,7 +152,7 @@ void ArrayList::display() {
 
 int ArrayList::getElement(int index) {
     if (index < 0 || index >= size_) {
-        return -1;
+        throw std::out_of_range("Index out of range.");
     }
     return array_[index];
 }
