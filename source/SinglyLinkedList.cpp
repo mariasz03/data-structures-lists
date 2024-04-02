@@ -48,18 +48,18 @@ void SinglyLinkedList::addAt(int index, int element) {
 
 void SinglyLinkedList::removeLast() {
     if (head == nullptr) return; // Przypadek kiedy lista jest pusta
-    if (head->next == nullptr) {
+    if (head->next == nullptr) { // Przypadek w którym lista ma tylko jeden element
         removeFirst();
         return;
     }
     Node* currentNode = head;
-        Node* previousNode = nullptr;
-        while (currentNode->next != nullptr) {
-            previousNode = currentNode;
-            currentNode = currentNode->next;
-        }
-        delete currentNode;
-        previousNode->next = nullptr;
+    Node* previousNode = nullptr;
+    while (currentNode->next != nullptr) {
+        previousNode = currentNode;
+        currentNode = currentNode->next;
+    }
+    delete currentNode;
+    previousNode->next = nullptr;
 }
 
 void SinglyLinkedList::removeFirst() {
@@ -115,14 +115,16 @@ void SinglyLinkedList::display() {
 }
 
 int SinglyLinkedList::getElement(int index) {
+    if (index < 0) throw std::out_of_range("Negative index.");
+    if (head == nullptr) throw std::out_of_range("List is empty.");
     Node* currentNode = head;
     int i = 0;
     while (currentNode != nullptr && i < index) {    
         currentNode = currentNode->next;
         i++;
     }
+    if (currentNode == nullptr) throw std::out_of_range("Element not found.");
     return currentNode->element;
-    throw std::out_of_range("Element not found.");
 }
 
 int SinglyLinkedList::getSize() {
