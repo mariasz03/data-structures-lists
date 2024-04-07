@@ -1,5 +1,4 @@
 #include "..\headers\DoublyLinkedList.hpp"
-#include "..\headers\Node.hpp"
 
 DoublyLinkedList::DoublyLinkedList() : head(nullptr), tail(nullptr) {}
 

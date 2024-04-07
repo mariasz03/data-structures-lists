@@ -14,5 +14,5 @@ class DoubleNode {
         DoubleNode* next;
         DoubleNode* previous;
 
-        DoubleNode(int element) : element(element), next(nullptr), previous(nullptr) {};
+    DoubleNode(int element) : element(element), next(nullptr), previous(nullptr) {};
 };
