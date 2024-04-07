@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Node.hpp"
+#pragma once
 
 class SinglyLinkedListTail {
 private:
