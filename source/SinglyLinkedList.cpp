@@ -1,6 +1,5 @@
 #include "..\headers\SinglyLinkedList.hpp"
-
-Node::Node(int element) : element(element), next(nullptr) {}
+#include "..\headers\Node.hpp"
 
 SinglyLinkedList::SinglyLinkedList() : head(nullptr) {}
 
@@ -101,7 +100,7 @@ int SinglyLinkedList::findElement (int element) {
         currentNode = currentNode->next;
         i++;
     }
-    throw std::out_of_range("Element not found.");
+    return -1;
 }
 
 void SinglyLinkedList::display() {

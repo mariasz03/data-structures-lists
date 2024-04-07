@@ -140,9 +140,8 @@ int ArrayList::findElement(int element) {
             return i;
         }
     }
-    throw std::out_of_range("Element not found.");
+    return -1;
 }
-
 
 void ArrayList::display() {
     for(int i = 0; i < size_; i++) {

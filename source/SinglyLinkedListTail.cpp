@@ -1,6 +1,5 @@
-#include "SinglyLinkedListTail.hpp"
-
-Node::Node(int element) : element(element), next(nullptr) {}
+#include "..\headers\SinglyLinkedListTail.hpp"
+#include "..\headers\Node.hpp"
 
 SinglyLinkedListTail::SinglyLinkedListTail() : head(nullptr), tail(nullptr) {}
 
@@ -106,7 +105,7 @@ int SinglyLinkedListTail::findElement(int element) {
         currentNode = currentNode->next;
         i++;
     }
-    throw std::out_of_range("Element not found.");
+    return -1;
 }
 
 void SinglyLinkedListTail::display() {

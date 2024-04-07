@@ -1,13 +1,13 @@
 #include <iostream>
 #include "Node.hpp"
-#pragma once
 
-class SinglyLinkedList {
+class DoublyLinkedList {
 private:
-    Node* head;
+    DoubleNode* head;
+    DoubleNode* tail;
 public:
-    SinglyLinkedList(); 
-    ~SinglyLinkedList();
+    DoublyLinkedList(); 
+    ~DoublyLinkedList();
 
     void addLast(int element); // Dodawanie na koncu
     void addFirst(int element); // Dodawanie na poczatku

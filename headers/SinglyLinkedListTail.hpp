@@ -1,13 +1,5 @@
 #include <iostream>
-#pragma once
-
-class Node {
-public:
-    int element;
-    Node* next;
-
-    Node(int element);
-};
+#include "Node.hpp"
 
 class SinglyLinkedListTail {
 private:
