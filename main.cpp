@@ -19,12 +19,6 @@ enum Function {
     FIND_ELEMENT
 };
 
-enum Structure {
-    ARRAY_LIST,
-    SINGLY_LINKED_LIST,
-    SINGLY_LINKED_LIST_TAIL,
-    DOUBLY_LINKED_LIST
-};
 uint32_t generateRandomNumberInRange(uint32_t seed, uint32_t max_value) {
     std::mt19937 gen(seed);
     std::uniform_int_distribution<uint32_t> dis(0, max_value);
@@ -235,6 +229,7 @@ int main() {
     SinglyLinkedList singlyLinkedList;
     SinglyLinkedListTail singlyLinkedListTail;
     DoublyLinkedList doublyLinkedList;
+
     uint32_t seed[3] = {1, 2, 3};
     int dataSetsSize[8] = {5000, 8000, 10000, 16000, 20000, 40000, 60000, 100000};
 
