@@ -21,6 +21,7 @@ public:
     int findElement(int element); // Wyszukiwanie pierwszego elementu o podanej wartosci i zwrocenie indeksu na ktorym sie znajduje
 
     void display(); // Wyswietlanie calej listy
+    void reset();
     int getElement(int index); // Zwraca wartosc elementu na podanym indeksie
     int getSize(); // Zwraca rozmiar listy
 };

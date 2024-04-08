@@ -2,3 +2,5 @@ a.exe
 ArrayList.hpp.gch
 .idea/workspace.xml
 .vscode/settings.json
+*.txt
+*.gch

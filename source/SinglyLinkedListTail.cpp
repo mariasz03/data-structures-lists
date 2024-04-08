@@ -118,6 +118,15 @@ void SinglyLinkedListTail::display() {
     }
 }
 
+void SinglyLinkedListTail::reset() {
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    tail = nullptr;
+}
+
 int SinglyLinkedListTail::getElement(int index) {
     if (index < 0) throw std::out_of_range("Negative index.");
     if (head == nullptr) throw std::out_of_range("List is empty.");

@@ -122,6 +122,15 @@ void DoublyLinkedList::display() {
     }
 }
 
+void DoublyLinkedList::reset() {
+    while (head != nullptr) {
+        DoubleNode* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    tail = nullptr;
+}
+
 int DoublyLinkedList::getElement(int index) {
     if (index < 0) throw std::out_of_range("Negative index.");
     if (head == nullptr) throw std::out_of_range("List is empty.");

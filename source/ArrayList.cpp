@@ -149,6 +149,13 @@ void ArrayList::display() {
     }
 }
 
+void ArrayList::reset() {
+    delete[] array_;
+    capacity_ = initialCapacity_;
+    size_ = 0;
+    array_ = new int[capacity_];
+}
+
 int ArrayList::getElement(int index) {
     if (index < 0 || index >= size_) {
         throw std::out_of_range("Index out of range.");
