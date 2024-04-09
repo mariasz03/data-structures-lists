@@ -8,7 +8,7 @@ public:
     Node(int element) : element(element), next(nullptr) {};
 };
 
-class DoubleNode {
+class DoubleNode { // Node listy dwukierunkowej
     public:
         int element;
         DoubleNode* next;
